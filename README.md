@@ -1,4 +1,4 @@
-# AgriHealth — Beginner Starter ZIP
+# AI Intelligence
 
 This is a clean Flask starter project created for a beginner-friendly AgriHealth prototype.
 
