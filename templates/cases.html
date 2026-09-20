@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Cases | AgriHealth{% endblock %}
+{% block content %}
+<div class="page-title"><span class="eyebrow">FIELD CASES</span><h1>Case management</h1><p>Track diagnosis, risk, extension response and rechecks.</p></div>
+<section class="card">
+<div class="table-wrap"><table><thead><tr><th>Case</th><th>Farmer</th><th>Crop</th><th>Location</th><th>Diagnosis</th><th>Risk</th><th>Status</th><th>Actions</th></tr></thead>
+<tbody>
+{% for c in cases %}
+<tr>
+<td><b>{{ c.case_id }}</b><br><small>{{ c.created_at }}</small></td>
+<td>{{ c.farmer }}</td><td>{{ c.crop }}</td><td>{{ c.district }}, {{ c.state }}</td>
+<td>{{ c.diagnosis }}</td><td><span class="pill {{ c.risk|lower }}">{{ c.risk }}</span></td><td>{{ c.status }}</td>
+<td>
+<form class="inline" method="post" action="{{ url_for('recheck', case_id=c.case_id) }}"><input class="mini" type="number" name="moisture" min="0" max="100" value="{{ c.moisture }}"><button class="btn tiny">Recheck</button></form>
+<form class="inline" method="post" action="{{ url_for('assign_extension', case_id=c.case_id) }}"><button class="btn tiny secondary">Assign</button></form>
+</td>
+</tr>
+{% endfor %}
+</tbody></table></div>
+</section>
+{% endblock %}

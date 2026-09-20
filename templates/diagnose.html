@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}AI Crop Health Analyzer{% endblock %}
+
+{% block content %}
+
+<div class="diagnose-container">
+
+    <section class="card">
+
+        <div class="card-head">
+            <div>
+                <small>AI CROP ANALYSIS</small>
+                <h2>Analyze Your Crop</h2>
+            </div>
+
+            <span class="status">AI Powered</span>
+        </div>
+
+        <form method="post" enctype="multipart/form-data">
+
+            <div class="upload">
+
+                <div class="upload-icon">📷</div>
+
+                <h3>Upload Leaf / Crop Image</h3>
+
+                <p>
+                    JPG, PNG, JPEG or WEBP
+                </p>
+
+                <input
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    required
+                >
+
+            </div>
+
+            <button
+                class="btn full"
+                type="submit"
+            >
+                🔍 Analyze Crop Health
+            </button>
+
+        </form>
+
+    </section>
+
+
+    {% if result %}
+
+    <section class="result-panel">
+
+        <span class="pill">
+            ANALYSIS COMPLETE
+        </span>
+
+        <div class="diagnosis">
+
+            <small>PROBABLE CONDITION</small>
+
+            <h2>
+                {{ result.diagnosis }}
+            </h2>
+
+            <div class="confidence">
+
+                <span>AI Confidence</span>
+
+                <b>
+                    {{ result.confidence }}%
+                </b>
+
+                <progress
+                    value="{{ result.confidence }}"
+                    max="100"
+                ></progress>
+
+            </div>
+
+        </div>
+
+
+        <div class="recommend">
+
+            <small>RECOMMENDED ACTION</small>
+
+            <p>
+                {{ result.action }}
+            </p>
+
+        </div>
+
+    </section>
+
+    {% else %}
+
+    <section class="empty card">
+
+        <div>🌱</div>
+
+        <h3>
+            Ready for Crop Analysis
+        </h3>
+
+        <p>
+            Upload a clear image of your crop or leaf
+            to analyze its health.
+        </p>
+
+    </section>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

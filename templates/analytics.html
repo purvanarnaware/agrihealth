@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Analytics | AgriHealth{% endblock %}
+{% block content %}
+<div class="page-title"><span class="eyebrow">AGRI ANALYTICS</span><h1>Turn field cases into signals</h1><p>These charts are generated from the cases stored in your AgriHealth database.</p></div>
+<div class="grid three">
+  <section class="card chart-card"><h3>Cases by Crop</h3><canvas id="cropChart"></canvas></section>
+  <section class="card chart-card"><h3>Risk Distribution</h3><canvas id="riskChart"></canvas></section>
+  <section class="card chart-card"><h3>Diagnosis Distribution</h3><canvas id="diseaseChart"></canvas></section>
+</div>
+<script>
+const cropLabels={{ crop_rows|map(attribute='crop')|list|tojson }};
+const cropData={{ crop_rows|map(attribute='count')|list|tojson }};
+const riskLabels={{ risk_rows|map(attribute='risk')|list|tojson }};
+const riskData={{ risk_rows|map(attribute='count')|list|tojson }};
+const diseaseLabels={{ disease_rows|map(attribute='diagnosis')|list|tojson }};
+const diseaseData={{ disease_rows|map(attribute='count')|list|tojson }};
+new Chart(document.getElementById('cropChart'),{type:'bar',data:{labels:cropLabels,datasets:[{label:'Cases',data:cropData}]},options:{responsive:true}});
+new Chart(document.getElementById('riskChart'),{type:'doughnut',data:{labels:riskLabels,datasets:[{data:riskData}]},options:{responsive:true}});
+new Chart(document.getElementById('diseaseChart'),{type:'bar',data:{labels:diseaseLabels,datasets:[{label:'Cases',data:diseaseData}]},options:{indexAxis:'y',responsive:true}});
+</script>
+{% endblock %}

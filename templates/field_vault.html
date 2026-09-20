@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Field Vault | AgriHealth{% endblock %}
+{% block content %}
+<div class="page-title"><span class="eyebrow">DIGITAL FIELD VAULT</span><h1>Farmer history</h1><p>Your diagnosis history becomes the foundation for follow-up and learning.</p></div>
+<div class="timeline">
+{% for c in cases %}
+<div class="timeline-item"><div class="timeline-dot"></div><div class="card"><div class="result-top"><b>{{ c.case_id }} · {{ c.crop }}</b><span class="pill {{ c.risk|lower }}">{{ c.risk }}</span></div><h3>{{ c.diagnosis }}</h3><p>{{ c.district }}, {{ c.state }} · {{ c.stage }} · {{ c.moisture }}% moisture</p><small>{{ c.created_at }} · {{ c.status }}</small><p><b>Action:</b> {{ c.action }}</p></div></div>
+{% endfor %}
+</div>
+{% endblock %}

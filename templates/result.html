@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Diagnosis Result | AgriHealth{% endblock %}
+{% block content %}
+<div class="page-title"><span class="eyebrow">ANALYSIS COMPLETE</span><h1>Crop health result</h1><p>Case ID: <b>{{ case_id }}</b> · {{ location }}</p></div>
+<div class="result-grid">
+  <section class="card diagnosis-main">
+    <div class="result-top"><span class="pill {{ result.risk|lower }}">{{ result.risk }} RISK</span><span class="confidence">{{ result.confidence }}% confidence</span></div>
+    <h2>{{ result.diagnosis }}</h2>
+    <p class="muted">Crop: <b>{{ result.crop }}</b> · Stage: <b>{{ result.stage }}</b> · Soil moisture: <b>{{ result.moisture }}%</b></p>
+    <div class="recommend"><b>🎯 Recommended action</b><p>{{ result.action }}</p></div>
+    <div class="grid two compact">
+      <div><h3>Monitor</h3><ul>{% for x in result.monitoring %}<li>{{ x }}</li>{% endfor %}</ul></div>
+      <div><h3>Precautions</h3><ul>{% for x in result.precautions %}<li>{{ x }}</li>{% endfor %}</ul></div>
+    </div>
+  </section>
+  <aside class="card">
+    <h3>Next step</h3>
+    <p>Save this case, assign extension support if needed, and recheck after field action.</p>
+    <a class="btn secondary" href="{{ url_for('cases') }}">Open Cases</a>
+    <a class="btn primary" href="{{ url_for('diagnose') }}">New Diagnosis</a>
+  </aside>
+</div>
+{% endblock %}

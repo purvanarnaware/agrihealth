@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | AgriHealth{% endblock %}
+{% block content %}
+<section class="hero">
+  <div><span class="eyebrow">FARM INTELLIGENCE</span><h1>Crop health, explained simply.</h1><p>One place for diagnosis, risk signals, field cases and actionable follow-up.</p></div>
+  <a class="btn primary" href="{{ url_for('diagnose') }}">＋ New Diagnosis</a>
+</section>
+
+<div class="stats">
+  <div class="stat"><span>Total Cases</span><strong>{{ stats.total }}</strong><small>Field observations</small></div>
+  <div class="stat danger"><span>High Risk</span><strong>{{ stats.high }}</strong><small>Needs attention</small></div>
+  <div class="stat"><span>Pending Review</span><strong>{{ stats.pending }}</strong><small>Extension follow-up</small></div>
+  <div class="stat success"><span>Resolved</span><strong>{{ stats.resolved }}</strong><small>Closed cases</small></div>
+</div>
+
+<div class="grid two">
+  <section class="card">
+    <div class="card-head"><h2>Recent Field Cases</h2><a href="{{ url_for('cases') }}">View all →</a></div>
+    <div class="table-wrap"><table><thead><tr><th>Case</th><th>Crop</th><th>Diagnosis</th><th>Risk</th><th>Status</th></tr></thead>
+    <tbody>{% for c in cases %}<tr><td>{{ c.case_id }}</td><td>{{ c.crop }}</td><td>{{ c.diagnosis }}</td><td><span class="pill {{ c.risk|lower }}">{{ c.risk }}</span></td><td>{{ c.status }}</td></tr>{% endfor %}</tbody></table></div>
+  </section>
+  <section class="card">
+    <div class="card-head"><h2>Smart Alerts</h2></div>
+    {% for a in alerts %}
+      <div class="alert-item"><span class="dot {{ a.level|lower }}"></span><div><b>{{ a.title }}</b><p>{{ a.message }}</p><small>{{ a.created_at }}</small></div></div>
+    {% endfor %}
+  </section>
+</div>
+
+<section class="card">
+  <div class="card-head"><h2>How AgriHealth works</h2></div>
+  <div class="flow">
+    <div>📷<b>Observe</b><small>Photo + crop + field data</small></div><span>→</span>
+    <div>🧠<b>Analyze</b><small>Diagnosis + risk engine</small></div><span>→</span>
+    <div>🎯<b>Act</b><small>IPM + irrigation guidance</small></div><span>→</span>
+    <div>🔄<b>Recheck</b><small>Confirm the outcome</small></div>
+  </div>
+</section>
+{% endblock %}

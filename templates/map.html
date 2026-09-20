@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Hotspots | AgriHealth{% endblock %}
+{% block content %}
+<div class="page-title"><span class="eyebrow">PEST & DISEASE INTELLIGENCE</span><h1>Hotspot view</h1><p>District-level aggregation of cases. This is the foundation for a future live GIS map.</p></div>
+<div class="grid three">
+{% for h in hotspots %}
+<div class="card hotspot"><span class="pill {{ h.risk|lower }}">{{ h.risk }}</span><h2>{{ h.district }}</h2><p>{{ h.state }}</p><b>{{ h.crop }} · {{ h.diagnosis }}</b><div class="hot-count">{{ h.count }} case{% if h.count != 1 %}s{% endif %}</div></div>
+{% endfor %}
+</div>
+<div class="card notice">🗺️ Next upgrade: connect GPS coordinates and a mapping library to display these signals on an interactive India/state/district map.</div>
+{% endblock %}
