@@ -1,6 +1,5 @@
-# AI Intelligence
+# AI Intelligence System
 
-This is a clean Flask starter project created for a beginner-friendly AgriHealth prototype.
 
 ## What is included
 
@@ -19,9 +18,7 @@ This is a clean Flask starter project created for a beginner-friendly AgriHealth
 - Digital Field Vault
 - Responsive UI
 
-## Important
 
-This version DOES NOT contain a trained AI image model. The uploaded crop image is stored with the case, while the diagnosis currently uses simple rules. This is intentional so the project can run without paid AI services or machine-learning setup.
 
 ## Run it on Windows
 
@@ -59,5 +56,6 @@ This version DOES NOT contain a trained AI image model. The uploaded crop image 
 7. Farmer login and field profiles
 8. WhatsApp/voice integration
 9. Deployment
+10. AI Models such as Gemini, CNN etc.
 
 The project is inspired by publicly described Plantix workflows such as photo-based crop diagnosis, treatment guidance, disease libraries and field intelligence, but this starter has its own structure and UI.
