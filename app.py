@@ -9,7 +9,7 @@ app.secret_key = "agrihealth-beginner-demo"
 
 BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = BASE_DIR / "agrihealth.db"
-UPLOAD_DIR = BASE_DIR / "static" / "uploads"
+UPLOAD_DIR = Path("/tmp")
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 
